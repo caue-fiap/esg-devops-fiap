@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+    app-esg:
+        build: .
+        container_name: esg_spring_app
+        ports:
+            - '8080:8080'
+        environment:
+            SPRING_DATA_MONGODB_URI: 'mongodb://mongo_db:27017/esg_db'
+        depends_on:
+            - mongo_db
+        networks:
+            - esg_network
+
+    mongo_db:
+        image: mongo:latest
+        container_name: esg_mongo_container
+        ports:
+            - '27017:27017'
+        volumes:
+            - mongo_data:/data/db
+        networks:
+            - esg_network
+
+networks:
+    esg_network:
+        driver: bridge
+
+volumes:
+    mongo_data:

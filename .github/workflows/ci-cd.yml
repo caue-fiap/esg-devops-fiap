@@ -1,0 +1,41 @@
+name: CI/CD Pipeline - ESG Inteligente (Spring Boot)
+
+on:
+    push:
+        branches: [main, develop]
+
+jobs:
+    build-and-test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout do código
+              uses: actions/checkout@v3
+
+            - name: Configurar JDK 17
+              uses: actions/setup-java@v3
+              with:
+                  java-version: '17'
+                  distribution: 'temurin'
+                  cache: maven
+
+            - name: Rodar Testes com Maven
+              run: mvn clean test
+
+            - name: Build do Projeto (Geração do JAR)
+              run: mvn clean package -DskipTests
+
+    deploy-staging:
+        needs: build-and-test
+        if: github.ref == 'refs/heads/develop'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy to Staging
+              run: echo "Efetuando Deploy em Ambiente de Homologação (Staging)..."
+
+    deploy-production:
+        needs: build-and-test
+        if: github.ref == 'refs/heads/main'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy to Production
+              run: echo "Efetuando Deploy da aplicação Spring Boot em Ambiente de Produção..."
