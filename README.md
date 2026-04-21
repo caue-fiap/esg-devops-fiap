@@ -20,7 +20,7 @@ Para rodar a aplicação na sua máquina, você não precisa ter o Java ou o Mav
 1. Clone este repositório para a sua máquina local:
 
     ```bash
-    git clone [URL_DO_SEU_REPOSITORIO]
+    git clone https://github.com/caue-fiap/esg-devops-fiap.git
     cd diversidade-esg
     ```
 
