@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": { "type": "integer" },
+      "nomeRegistro": { "type": "string" },
+      "cargo": { "type": "string" },
+      "pcd": { "type": "boolean" }
+    },
+    "required": ["id", "nomeRegistro"]
+  }
+}

@@ -47,13 +47,13 @@ Etapas do Pipeline:
 
 Checkout & Setup: O pipeline baixa o código fonte e configura um ambiente com JDK 17 (Temurin).
 
-Build & Test: Utilizando o Maven, o projeto é compilado e todos os testes unitários são executados. Se qualquer teste falhar, o pipeline é bloqueado (Gatekeeper), impedindo que bugs cheguem à produção.
+Build & Test: Utilizando o Maven, o projeto é compilado e toda a nossa suíte de qualidade é executada. Isso inclui os testes unitários e os testes automatizados de comportamento (BDD) utilizando Cucumber e RestAssured. Se qualquer teste ou cenário de negócio falhar, o pipeline é imediatamente bloqueado (Gatekeeper), impedindo que bugs cheguem aos ambientes seguintes.
 
-Deploy em Staging: Disparado automaticamente quando há um Push ou Pull Request na branch develop. Serve para homologação.
+Deploy em Staging: Disparado automaticamente quando há um Push ou Pull Request na branch develop. Serve para homologação e validação da API.
 
-Deploy em Produção: Disparado exclusivamente quando o código é mesclado na branch main.
+Deploy em Produção: Disparado exclusivamente quando o código validado é mesclado (merge) na branch main.
 
-Essa automação reduz o risco de falhas humanas e garante processos auditáveis, reforçando o pilar de Governança (G).
+Essa automação reduz drasticamente o risco de falhas humanas e garante processos 100% auditáveis, reforçando o pilar de Governança (G) do projeto.
 
 ## 📦 Containerização
 
@@ -110,6 +110,10 @@ Nota: As imagens abaixo comprovam o funcionamento da esteira DevOps e da aplica�
 
 <img alt="print GET banco de dados" src="./imagens/get.png"></img>
 
+### 5. Teste Q.A:
+
+<img alt="print Testes" src="./imagens/testes.png"></img>
+
 ## 🛠️ Tecnologias utilizadas
 
 As seguintes ferramentas, frameworks e linguagens foram utilizadas na construção deste módulo:
@@ -127,6 +131,8 @@ Containerização: Docker e Docker Compose (Multi-stage build, Alpine Linux)
 CI/CD: GitHub Actions
 
 Testes de API: Postman
+
+Qualidade e Testes (QA): JUnit 5, Cucumber (BDD) e RestAssured (Testes de Contrato e API)
 
 ## ✅ Checklist de Entrega
 
