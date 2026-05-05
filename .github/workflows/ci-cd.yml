@@ -17,6 +17,11 @@ jobs:
                   java-version: '17'
                   distribution: 'temurin'
                   cache: maven
+            - name: Subir ambiente com Docker Compose
+              run: docker compose up -d
+
+            - name: Aguardar o Spring Boot iniciar
+              run: sleep 20
 
             - name: Rodar Testes com Maven
               run: mvn clean test
